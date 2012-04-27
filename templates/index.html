@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<link type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css" rel="Stylesheet" />
-		<script href="{{STATIC_URL}}js/jquery.js" type="text/javacsript"></script>
-		<script type="text/javacsript"></script>
+		<link type="text/css" href="{{STATIC_URL}}css/bootstrap.css" rel="Stylesheet" />
+		<script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#id_subdomain').val(localStorage.subdomain);
+				$('#id_token').val(localStorage.token);
+
+				$('#submit').click(function() {
+					setLocalStorage('subdomain', $('#id_subdomain').val());
+					setLocalStorage('token', $('#id_token').val());
+				});
+
+				function setLocalStorage(key, value) {
+					localStorage[key] = value;
+				}
+			});
+
+
+		</script>
 	</head>
 	<body>
 		<div class="container">
@@ -11,7 +27,7 @@
 			<form method="POST" enctype="multipart/form-data" action="/upload/">
 				{% csrf_token %}
 				{{ form.as_p }}
-				<input type="submit" value="Giver!"/>
+				<input id="submit" type="submit" value="Giver!"/>
 			</form>
 		</div>
 	</body>

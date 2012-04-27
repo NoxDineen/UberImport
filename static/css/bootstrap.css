@@ -123,6 +123,10 @@ textarea {
   *zoom: 1;
 }
 
+p.moar {
+  margin-top:50px;
+}
+
 .clearfix:before,
 .clearfix:after {
   display: table;
@@ -158,6 +162,7 @@ body {
   line-height: 18px;
   color: #333333;
   background-color: #ffffff;
+  padding:5px;
 }
 
 a {
@@ -1550,6 +1555,8 @@ table {
 .table-bordered th,
 .table-bordered td {
   border-left: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+  padding:3px;
 }
 
 .table-bordered caption + thead tr:first-child th,

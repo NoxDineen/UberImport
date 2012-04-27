@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<link type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css" rel="Stylesheet" />
+		<link type="text/css" href="{{STATIC_URL}}css/bootstrap.css" rel="Stylesheet" />
 	</head>
 	<body>
 		<div class="container">
 			<h1>Results</h1><br/>
 			{% if successes %}
 				<h2>Successful Imports</h2>
-				<table class="success">
+				<table class="success table-bordered">
 					<thead>
 						<tr>
 							{% for header in successes.0 %}
@@ -30,11 +30,13 @@
 
 			{% if errors %}
 				<h2>Errors</h2>
-				<table class="error">
+				<table class="error table-bordered">
 					<thead>
 						<tr>
 							{% for header in errors.0 %}
+								{% if header != "message" %}
 								<th>{{header|title}}</th>
+								{% endif %}
 							{% endfor %}
 							<th>Error Message</th>
 						</tr>
@@ -47,13 +49,13 @@
 								<td>{{ value }}</td>
 								{% endif %}
 							{% endfor %}
-							<td class="error message">{{ error.message }}</td>
+							<td class="error">{{ error.message }}</td>
 							</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			{% endif %}
-			<a href = "/">Import some moar!</a>
+			<marquee><p class="moar"><a href = "/">Import some moar!</a></p></marquee>
 		</div>
 	</body>
 </html>

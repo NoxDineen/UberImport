@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css" rel="Stylesheet" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>Results</h1><br/>
+			{% if successes %}
+				<h2>Successful Imports</h2>
+				<table class="success">
+					<thead>
+						<tr>
+							{% for header in successes.0 %}
+								<th>{{header|title}}</th>
+							{% endfor %}
+						</tr>
+					</thead>
+					<tbody>
+						{% for success in successes %}
+							<tr>
+							{% for key, value in success.items %}
+								<td>{{ value }}</td>
+							{% endfor %}
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% endif %}
+
+			{% if errors %}
+				<h2>Errors</h2>
+				<table class="error">
+					<thead>
+						<tr>
+							{% for header in errors.0 %}
+								<th>{{header|title}}</th>
+							{% endfor %}
+							<th>Error Message</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for error in errors %}
+							<tr>
+							{% for key, value in error.items %}
+								{% if key != "message" %}
+								<td>{{ value }}</td>
+								{% endif %}
+							{% endfor %}
+							<td class="error message">{{ error.message }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% endif %}
+			<a href = "/">Import some moar!</a>
+		</div>
+	</body>
+</html>
